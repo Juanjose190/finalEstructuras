@@ -42,6 +42,4 @@ Utilizada para gestionar pedidos en espera. Garantiza que los pedidos se atienda
 
 Este proyecto fue desarrollado con fines educativos para aplicar y demostrar el uso de estructuras de datos fundamentales en un contexto práctico e interactivo. Cada estructura resuelve una necesidad real dentro del flujo de una aplicación de restaurante.
 
-## Instrucciones de ejecución
 
-1. Clona el repositorio:
