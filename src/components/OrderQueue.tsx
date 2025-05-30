@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Order, OrderStatus } from '../types';
 
-// Uses Queue data structure for pending orders and LinkedList for orders in other states
+
 interface OrderQueueProps {
   title: string;
   orders: Order[];
