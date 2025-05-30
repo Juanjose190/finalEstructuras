@@ -7,14 +7,12 @@ const MenuExplorer: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
-  
-  // Get all menu items from the binary tree
+
   const allMenuItems = menuTree.toArray();
   
-  // Extract unique categories
+
   const categories = [...new Set(allMenuItems.map(item => item.category))];
-  
-  // Filter menu items based on category and search term
+
   const filteredItems = allMenuItems.filter(item => {
     const matchesCategory = !selectedCategory || item.category === selectedCategory;
     const matchesSearch = !searchTerm || 
@@ -33,7 +31,7 @@ const MenuExplorer: React.FC = () => {
   };
   
   const handleItemClick = (item: MenuItem) => {
-    // Get the item from the hash table to simulate hash table lookup
+
     const itemFromHash = menuItemsTable.get(item.id);
     if (itemFromHash) {
       setSelectedItem(itemFromHash);
