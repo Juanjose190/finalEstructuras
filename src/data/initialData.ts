@@ -1,9 +1,9 @@
 import { MenuItem, Waiter, RestaurantTable, TableStatus, RestaurantLocation, LocationType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
-// Initial menu items
+
 export const initialMenu: MenuItem[] = [
-  // Starters
+
   {
     id: uuidv4(),
     name: 'Garlic Bread',
@@ -31,8 +31,7 @@ export const initialMenu: MenuItem[] = [
     preparationTime: 12,
     imageUrl: 'https://images.pexels.com/photos/15126954/pexels-photo-15126954/free-photo-of-close-up-of-mozzarella-sticks.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
   },
-  
-  // Main Courses
+
   {
     id: uuidv4(),
     name: 'Margherita Pizza',
@@ -69,8 +68,7 @@ export const initialMenu: MenuItem[] = [
     preparationTime: 15,
     imageUrl: 'https://images.pexels.com/photos/2702674/pexels-photo-2702674.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
   },
-  
-  // Desserts
+
   {
     id: uuidv4(),
     name: 'Tiramisu',
@@ -89,8 +87,7 @@ export const initialMenu: MenuItem[] = [
     preparationTime: 8,
     imageUrl: 'https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
   },
-  
-  // Drinks
+
   {
     id: uuidv4(),
     name: 'Sparkling Water',
@@ -111,7 +108,6 @@ export const initialMenu: MenuItem[] = [
   }
 ];
 
-// Initial waiters
 export const initialWaiters: Waiter[] = [
   {
     id: uuidv4(),
@@ -133,7 +129,6 @@ export const initialWaiters: Waiter[] = [
   }
 ];
 
-// Initial tables
 export const initialTables: RestaurantTable[] = [
   { id: 1, x: 10, y: 10, seats: 2, status: TableStatus.AVAILABLE },
   { id: 2, x: 30, y: 10, seats: 2, status: TableStatus.AVAILABLE },
@@ -146,7 +141,6 @@ export const initialTables: RestaurantTable[] = [
   { id: 9, x: 50, y: 50, seats: 2, status: TableStatus.AVAILABLE }
 ];
 
-// Initial locations (for the restaurant map)
 export const initialLocations: RestaurantLocation[] = [
   { id: 'kitchen', name: 'Kitchen', type: LocationType.KITCHEN, x: 30, y: 5 },
   { id: 'bar', name: 'Bar', type: LocationType.BAR, x: 55, y: 5 },
