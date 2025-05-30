@@ -5,8 +5,7 @@ import { Order, OrderStatus } from '../types';
 const Orders: React.FC = () => {
   const { orders, updateOrderStatus } = useAppContext();
   const [statusFilter, setStatusFilter] = useState<OrderStatus | 'ALL'>('ALL');
-  
-  // Filter and sort orders
+
   const filteredOrders = statusFilter === 'ALL' 
     ? orders 
     : orders.filter(order => order.status === statusFilter);
@@ -17,8 +16,7 @@ const Orders: React.FC = () => {
   
   const handleStatusChange = (orderId: string, newStatus: OrderStatus) => {
     updateOrderStatus(orderId, newStatus);
-    
-    // Auto-transition to completed if served
+
     if (newStatus === OrderStatus.SERVED) {
       setTimeout(() => {
         updateOrderStatus(orderId, OrderStatus.COMPLETED);
