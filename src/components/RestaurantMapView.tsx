@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { LocationType } from '../types';
 
-// Uses Graph data structure for pathfinding and distance calculations
-// between different locations in the restaurant
+
 const RestaurantMapView: React.FC = () => {
   const { locations, restaurantMap, tables } = useAppContext();
   const [startLocation, setStartLocation] = useState<string>('');
@@ -13,10 +12,10 @@ const RestaurantMapView: React.FC = () => {
   const [estimatedTime, setEstimatedTime] = useState<number | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Average walking speed in meters per second
+
   const WALKING_SPEED = 1.4;
   
-  // Convert coordinates to fit canvas
+
   const scaleCoordinates = (x: number, y: number, canvasWidth: number, canvasHeight: number) => {
     const padding = 20;
     const maxX = Math.max(...locations.map(loc => loc.x)) + padding;
@@ -28,18 +27,16 @@ const RestaurantMapView: React.FC = () => {
     };
   };
   
-  // Draw the restaurant map
+
   const drawMap = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    
-    // Clear the canvas
+   
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw edges (paths between locations)
+  
     const edges = restaurantMap.getAllEdges();
     ctx.strokeStyle = '#d1d5db';
     ctx.lineWidth = 2;
@@ -56,8 +53,7 @@ const RestaurantMapView: React.FC = () => {
         ctx.moveTo(fromCoords.x, fromCoords.y);
         ctx.lineTo(toCoords.x, toCoords.y);
         ctx.stroke();
-        
-        // Draw the weight (distance) at the middle of the edge
+
         const midX = (fromCoords.x + toCoords.x) / 2;
         const midY = (fromCoords.y + toCoords.y) / 2;
         
@@ -66,8 +62,7 @@ const RestaurantMapView: React.FC = () => {
         ctx.fillText(`${weight.toFixed(1)}m`, midX, midY);
       }
     });
-    
-    // Draw the path if there is one
+
     if (path.length > 1) {
       ctx.strokeStyle = '#7D2E46';
       ctx.lineWidth = 3;
@@ -88,13 +83,11 @@ const RestaurantMapView: React.FC = () => {
       }
     }
     
-    // Draw vertices (locations)
     locations.forEach(loc => {
       const coords = scaleCoordinates(loc.x, loc.y, canvas.width, canvas.height);
       
       ctx.beginPath();
       
-      // Different colors for different location types
       switch (loc.type) {
         case LocationType.KITCHEN:
           ctx.fillStyle = '#8F9E7D';
@@ -163,7 +156,6 @@ const RestaurantMapView: React.FC = () => {
     });
   };
   
-  // Calculate and display the shortest path between two locations
   const findPath = () => {
     if (!startLocation || !endLocation) {
       alert('Please select both start and end locations');
@@ -172,16 +164,16 @@ const RestaurantMapView: React.FC = () => {
     
     console.log(`🔍 Attempting to find path from ${startLocation} to ${endLocation}`);
     
-    // Debug the graph structure first
+  
     restaurantMap.debugGraph();
     
-    // Call dijkstra method directly
+
     const result = restaurantMap.dijkstra(startLocation, endLocation);
     
     if (result) {
       setPath(result.path);
       setDistance(result.distance);
-      // Calculate estimated time based on walking speed
+
       setEstimatedTime(result.distance / WALKING_SPEED);
       console.log('✅ Path found:', result.path);
       console.log('✅ Distance:', result.distance);
@@ -194,7 +186,7 @@ const RestaurantMapView: React.FC = () => {
     }
   };
   
-  // Reset the path
+
   const clearPath = () => {
     setPath([]);
     setDistance(null);
@@ -203,22 +195,21 @@ const RestaurantMapView: React.FC = () => {
     setEndLocation('');
   };
   
-  // Debug button to show graph structure
+
   const debugGraph = () => {
     restaurantMap.debugGraph();
   };
   
-  // Redraw the map when locations, paths, or canvas size changes
+
   useEffect(() => {
     const handleResize = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      
-      // Set canvas dimensions to match container
+
       const container = canvas.parentElement;
       if (container) {
         canvas.width = container.clientWidth;
-        canvas.height = 400; // Fixed height
+        canvas.height = 400; 
       }
       
       drawMap();
