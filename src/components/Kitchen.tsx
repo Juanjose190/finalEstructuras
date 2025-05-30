@@ -2,8 +2,7 @@ import React from 'react';
 import { useAppContext } from '../context/AppContext';
 import { OrderStatus } from '../types';
 
-// Uses LinkedList data structure to manage orders in preparation,
-// allowing efficient sequential processing and status updates
+
 const Kitchen: React.FC = () => {
   const { kitchenOrdersList, moveOrderToServed, updateOrderStatus } = useAppContext();
   
@@ -11,7 +10,7 @@ const Kitchen: React.FC = () => {
   
   const handleMarkAsReady = (orderId: string) => {
     updateOrderStatus(orderId, OrderStatus.READY);
-    // After marking as ready, automatically move to served after animation
+
     setTimeout(() => {
       moveOrderToServed(orderId);
     }, 2000);
