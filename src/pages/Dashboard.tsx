@@ -7,11 +7,9 @@ import { OrderStatus } from '../types';
 
 const Dashboard: React.FC = () => {
   const { orders, pendingOrdersQueue, moveOrderToKitchen, changesStack } = useAppContext();
-  
-  // Get pending orders from the queue
+
   const pendingOrders = pendingOrdersQueue.getAll();
-  
-  // Get all other orders from the orders state
+
   const inProgressOrders = orders.filter(order => order.status === OrderStatus.IN_PROGRESS);
   const readyOrders = orders.filter(order => order.status === OrderStatus.READY);
   const servedOrders = orders.filter(order => order.status === OrderStatus.SERVED);
