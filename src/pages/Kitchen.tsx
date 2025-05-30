@@ -4,8 +4,7 @@ import { OrderStatus } from '../types';
 
 const Kitchen: React.FC = () => {
   const { kitchenOrdersList, moveOrderToServed, updateOrderStatus } = useAppContext();
-  
-  // Get orders from the kitchen list
+
   const kitchenOrders = kitchenOrdersList.toArray();
   
   const handleMarkAsReady = (orderId: string) => {
