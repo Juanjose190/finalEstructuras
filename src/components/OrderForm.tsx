@@ -9,7 +9,6 @@ const OrderForm: React.FC = () => {
   const [selectedItems, setSelectedItems] = useState<OrderItem[]>([]);
   const [specialInstructions, setSpecialInstructions] = useState<string>('');
   
-  // Group menu items by category
   const menuByCategory = menu.reduce((acc, item) => {
     if (!acc[item.category]) {
       acc[item.category] = [];
@@ -22,7 +21,7 @@ const OrderForm: React.FC = () => {
     const existingItem = selectedItems.find(item => item.menuItemId === menuItem.id);
     
     if (existingItem) {
-      // Update quantity if item already exists in order
+
       setSelectedItems(
         selectedItems.map(item =>
           item.menuItemId === menuItem.id
@@ -31,7 +30,7 @@ const OrderForm: React.FC = () => {
         )
       );
     } else {
-      // Add new item to order
+
       setSelectedItems([
         ...selectedItems,
         {
@@ -49,7 +48,7 @@ const OrderForm: React.FC = () => {
     const item = selectedItems.find(item => item.menuItemId === menuItemId);
     
     if (item && item.quantity > 1) {
-      // Decrease quantity if more than 1
+
       setSelectedItems(
         selectedItems.map(item =>
           item.menuItemId === menuItemId
@@ -58,7 +57,7 @@ const OrderForm: React.FC = () => {
         )
       );
     } else {
-      // Remove item completely
+
       setSelectedItems(selectedItems.filter(item => item.menuItemId !== menuItemId));
     }
   };
@@ -78,7 +77,7 @@ const OrderForm: React.FC = () => {
       return;
     }
     
-    // Create new order
+
     addOrder({
       tableNumber,
       items: selectedItems,
@@ -86,7 +85,7 @@ const OrderForm: React.FC = () => {
       specialInstructions
     });
     
-    // Reset form
+
     setSelectedItems([]);
     setSpecialInstructions('');
   };
