@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext';
 const ChangeHistory: React.FC = () => {
   const { changesStack, undoLastChange } = useAppContext();
   
-  const changes = changesStack.getAll().reverse(); // Show newest changes first
+  const changes = changesStack.getAll().reverse(); 
   
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
